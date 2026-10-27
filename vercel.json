@@ -2,8 +2,8 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/:slug([a-z0-9-]+)",
-      "destination": "/index.html"
+      "source": "/:slug",
+      "destination": "/"
     }
   ],
   "headers": [
