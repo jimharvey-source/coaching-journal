@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Coaching Journal · The Message Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Archivo+Black&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/journal.css">
+</head>
+<body>
+<div class="toolbar" id="toolbar" hidden><span id="whoami"></span><button type="button" class="linkbtn" id="signout">Sign out on this device</button></div>
+
+<section class="sheet gate" id="gate" hidden aria-labelledby="t-gate">
+  <div class="band">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><path d="M14 20 H86 A6 6 0 0 1 92 26 V64 A6 6 0 0 1 86 70 H44 L26 88 V70 H14 A6 6 0 0 1 8 64 V26 A6 6 0 0 1 14 20 Z" fill="#22B6E6"/><circle cx="34" cy="45" r="6.5" fill="#14181F"/><circle cx="50" cy="45" r="6.5" fill="#14181F"/><circle cx="66" cy="45" r="6.5" fill="#14181F"/></svg>
+      <span>THE <b>MESSAGE</b> BUSINESS</span>
+    </div>
+  </div>
+  <form class="inner" id="gateform" novalidate>
+    <div class="eyebrow">Coaching journal</div>
+    <h2 id="t-gate">Open your book</h2>
+    <p>Enter the access code Jim gave you.</p>
+    <label for="code" class="eyebrow" style="color:var(--signal)">Access code</label>
+    <input id="code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX">
+    <label class="row"><input type="checkbox" id="remember" checked> Keep me signed in on this device</label>
+    <span class="err" id="gateerr" role="alert"></span>
+    <button type="submit" id="open">Open</button>
+  </form>
+  <div class="foot"><span>Private. Only you and your coach can open this book.</span><span class="so">STAND OUT</span></div>
+</section>
+
+<section class="sheet gate" id="nobook" hidden>
+  <div class="inner"><div class="eyebrow">The Message Business</div><h2>Coaching journals</h2><p>Use the personal link Jim sent you.</p></div>
+</section>
+
+<main class="book" id="book" aria-live="off"></main>
+<div class="syncpill" id="status" role="status" hidden></div>
+<script src="/journal.js"></script>
+</body>
+</html>
