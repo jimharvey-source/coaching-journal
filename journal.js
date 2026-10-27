@@ -53,7 +53,8 @@
     document.title = state.title + ' · Coaching Journal';
     $('book').innerHTML = state.content_html;
     $('toolbar').hidden = false;
-    $('whoami').textContent = state.role === 'coach' ? 'Coach view: reading ' + state.name + "'s book" : state.name + "'s book";
+    var poss = state.name + (/s$/i.test(state.name) ? "'" : "'s");
+    $('whoami').textContent = state.role === 'coach' ? 'Coach view: reading ' + poss + ' coaching journal' : poss + ' coaching journal';
     var fields = $('book').querySelectorAll('textarea[id]');
     Array.prototype.forEach.call(fields, function (t) {
       var id = t.id, e = state.entries[id];
@@ -153,6 +154,34 @@
     status('You have unsynced notes. Go online first, then sign out.', true);
     return false;
   }
+
+  var pop = null, popFrom = null;
+  function closePop() { if (pop) { pop.remove(); pop = null; if (popFrom) popFrom.focus(); popFrom = null; } }
+  function openPop(btn) {
+    closePop();
+    var def = document.getElementById('def-' + btn.getAttribute('data-term'));
+    if (!def) return;
+    pop = document.createElement('div');
+    pop.className = 'pop'; pop.setAttribute('role', 'dialog');
+    var title = def.querySelector('dt').textContent;
+    pop.setAttribute('aria-label', title);
+    var b = document.createElement('b'); b.textContent = title; pop.appendChild(b);
+    var body = def.querySelector('dd').cloneNode(true);
+    while (body.firstChild) pop.appendChild(body.firstChild);
+    var x = document.createElement('button'); x.type = 'button'; x.className = 'x'; x.setAttribute('aria-label', 'Close'); x.textContent = '\u00d7';
+    x.addEventListener('click', closePop); pop.appendChild(x);
+    document.body.appendChild(pop);
+    var r = btn.getBoundingClientRect(), w = pop.offsetWidth;
+    var left = Math.min(Math.max(16, r.left + window.scrollX), window.scrollX + document.documentElement.clientWidth - w - 16);
+    pop.style.left = left + 'px'; pop.style.top = (r.bottom + window.scrollY + 8) + 'px';
+    popFrom = btn; x.focus();
+  }
+  document.addEventListener('click', function (ev) {
+    var t = ev.target.closest && ev.target.closest('.term');
+    if (t) { ev.preventDefault(); if (popFrom === t) closePop(); else openPop(t); return; }
+    if (pop && !pop.contains(ev.target)) closePop();
+  });
+  document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') closePop(); });
 
   window.addEventListener('online', function () { status('Back online. Syncing…'); flush(); });
   window.addEventListener('offline', function () { status('Offline. Your writing saves on this device.', true); });

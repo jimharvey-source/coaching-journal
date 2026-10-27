@@ -1,4 +1,4 @@
-var CACHE = 'tmb-journal-v1';
+var CACHE = 'tmb-journal-v2';
 var SHELL = ['/', '/journal.css', '/journal.js'];
 
 self.addEventListener('install', function (e) {

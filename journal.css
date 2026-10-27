@@ -104,3 +104,24 @@ img{max-width:100%}[hidden]{display:none!important}
 .linkbtn:hover{background:none;color:var(--ink)}
 .who{font-size:11.5px;color:var(--muted)}
 textarea[readonly]{background:#F1F3F6;border-left-color:#B8BFC9}
+
+.term{all:unset;cursor:help;color:inherit;font:inherit;border-bottom:2px dotted var(--signal);text-decoration:none}
+.term:hover{color:var(--signal);background:none}
+.term:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.trow.dark .term,.quote .term,.key .term{border-bottom-color:var(--sky)}
+.pop{position:absolute;z-index:30;max-width:min(380px,calc(100vw - 32px));background:var(--ink);color:#fff;padding:16px 18px 14px;box-shadow:0 8px 24px rgba(20,24,31,.25);font-size:14px;line-height:1.55}
+.pop b{display:block;font-family:var(--label);font-size:10.5px;letter-spacing:.2em;color:var(--sky);text-transform:uppercase;margin-bottom:6px}
+.pop p{margin:0 0 8px}
+.pop .x{all:unset;position:absolute;top:8px;right:10px;cursor:pointer;color:var(--paper);font-size:18px;line-height:1;padding:4px 6px}
+.pop .x:focus-visible{outline:2px solid var(--sky)}
+.pop a{color:var(--sky)}
+.glossary{display:flex;flex-direction:column;margin:0}
+.glossary .def{padding:14px 0;border-bottom:1px solid var(--rule)}
+.glossary .def:first-child{border-top:2.67px solid var(--ink)}
+.glossary dt{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-.01em}
+.glossary dd{margin:6px 0 0;font-size:14.5px;max-width:66ch}
+.glossary dd p{margin:0 0 6px}
+.def:target{background:#EAF2FF}
+.hint{margin:0;font-size:13.5px;color:var(--muted);max-width:66ch}
+textarea::placeholder{color:#8A93A0;font-style:italic;opacity:1}
+textarea:focus::placeholder{color:transparent}
